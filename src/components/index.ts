@@ -1,7 +1,7 @@
 import type { App, Component } from 'vue'
 import SvgIcon from './SvgIcon/index.vue'
 
-const allGlobalComponents: {[key: string]: Component} = {
+const allGlobalComponents: { [key: string]: Component } = {
   SvgIcon,
 }
 
