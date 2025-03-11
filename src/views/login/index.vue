@@ -4,13 +4,13 @@
       <el-row>
         <el-col :span="12" :xs="0"></el-col>
         <el-col :span="12" :xs="24">
-          <el-form class="login_form">
+          <el-form class="login_form" :model="loginForm" :rules="rules" ref="loginForms">
             <h1>Hello</h1>
             <h2>欢迎来到科软甄选</h2>
-            <el-form-item>
+            <el-form-item prop="username">
               <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password">
               <el-input
                 type="password"
                 :prefix-icon="Lock"
@@ -39,6 +39,7 @@ import { reactive, ref } from 'vue'
 import useUserStore from '@/store/modules/user'
 import { useRouter } from 'vue-router'
 import { ElNotification } from 'element-plus'
+import { getTime } from '@/utils/time'
 
 const loginForm = reactive({
   username: 'admin',
@@ -49,14 +50,16 @@ const loading = ref(false)
 
 const userStore = useUserStore()
 const router = useRouter()
-
+const loginForms = ref()
 const login = async () => {
+  await loginForms.value.validate()
+
   loading.value = true
   try {
     await userStore.userLogin(loginForm)
     router.push('/')
     ElNotification({
-      title: '登录成功',
+      title: `Hi! ${getTime()}好`,
       message: '欢迎回来',
       type: 'success',
     })
@@ -69,6 +72,17 @@ const login = async () => {
       type: 'error',
     })
   }
+}
+
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' },
+  ],
 }
 </script>
 
