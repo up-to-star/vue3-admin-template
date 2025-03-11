@@ -12,22 +12,31 @@
     "lint": "eslint . --fix",
     "lint:style": "stylelint src/**/*.{css,scss,vue} --cache --fix",
     "format": "prettier --write src/",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:test": "vue-tsc && vite build --mode test",
+    "build:pro": "vue-tsc && vite build --mode production"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.9.6",
+    "sass-migrator": "^2.3.1",
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.13.9",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.5.0",
     "@vue/tsconfig": "^0.7.0",
+    "axios": "^1.8.2",
     "eslint": "^9.21.0",
     "eslint-plugin-vue": "~10.0.0",
-    "husky": "^8.0.0",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
+    "mockjs": "^1.1.0",
     "npm-run-all2": "^7.0.2",
     "postcss": "^8.5.3",
     "postcss-html": "^1.8.0",
@@ -45,8 +54,13 @@
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.11.1",
     "typescript": "~5.8.0",
+    "unplugin-auto-import": "^19.1.1",
+    "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.1",
+    "vite-plugin-mock": "^3.0.2",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-devtools": "^7.7.2",
+    "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^2.2.8"
   }
 }
