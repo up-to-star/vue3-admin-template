@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <svg-icon name="home" color="red"></svg-icon>
-    <h1>test</h1>
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts"></script>
