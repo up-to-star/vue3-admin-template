@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { reqLogin } from '@/api/user'
 import type { loginForm, loginResponseData } from '@/api/user/type'
 import { GET_TOKEN, SET_TOKEN } from '@/utils/token'
+import { constantRoute } from '@/router/routes'
 
 const useUserStore = defineStore('User', () => {
   const token = ref(GET_TOKEN('x-token') || '')
-
+  const menuRoutes = reactive(constantRoute)
   async function userLogin(data: loginForm) {
     const result: loginResponseData = await reqLogin(data)
     if (result.code === 200) {
@@ -22,6 +23,7 @@ const useUserStore = defineStore('User', () => {
   return {
     token,
     userLogin,
+    menuRoutes,
   }
 })
 
