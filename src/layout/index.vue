@@ -10,7 +10,9 @@
       </el-scrollbar>
     </div>
     <div class="layout_tabbar">456</div>
-    <div class="layout_content">789</div>
+    <div class="layout_content">
+      <RouterView></RouterView>
+    </div>
   </div>
 </template>
 
